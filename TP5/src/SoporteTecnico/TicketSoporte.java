@@ -9,7 +9,7 @@ public class TicketSoporte {
     private LocalDate fechaCreacion;
     private static int contadorId = 1;
     private Usuario usuario;
-    private String tecnico;
+    private Tecnico tecnico;
 
     //constructor sin usuario
     public TicketSoporte(int id, String descripcion) {
@@ -29,21 +29,35 @@ public class TicketSoporte {
         this.estado = "cerrado";
     }
 
-    public void mostrarDetalle() {
-        System.out.println("id "+ id + " " +descripcion+" "+ estado);
+    public String mostrarDetalle() {
+        String detalle = "Ticket ID: " + id +
+                "\nDescripción: " + descripcion +
+                "\nEstado: " + estado +
+                "\nFecha de creación: " + fechaCreacion;
+
+        if (usuario != null) {
+            detalle += "\nUsuario: " + usuario;
+        }
+
+        if (tecnico != null) {
+            detalle += "\nTécnico asignado: " + tecnico;
+        }
+
+        return detalle;
     }
 
-    public void aignarTecnico(){
+    public void asignarTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
     }
 
     @Override
     public String toString() {
-        return "TicketSoporte{" +
-                "id=" + id +
-                ", descripcion='" + descripcion + '\'' +
-                ", estado='" + estado + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                '}';
+        return "Ticket ID: " + id +
+                "\nDescripción: " + descripcion +
+                "\nEstado: " + estado +
+                "\nFecha: " + fechaCreacion +
+                "\nUsuario: " + (usuario != null ? usuario : "No asignado") +
+                "\nTécnico: " + (tecnico != null ? tecnico : "No asignado") +
+                "\n----------------------------";
     }
 }
