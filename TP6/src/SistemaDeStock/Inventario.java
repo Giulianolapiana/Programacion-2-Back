@@ -48,4 +48,50 @@ public class Inventario {
         }
     }
 
+    public ArrayList<Producto> filtrarPorCategoria(CategoriaProducto categoria){
+        ArrayList<Producto> filtrados = new ArrayList<>();
+        for (Producto p : productos) {
+            if (p.getCategoria() == categoria) {
+                filtrados.add(p);
+            }
+        }
+        return filtrados;
+    }
+
+    public int obtenerTotalStock(){
+        int total = 0;
+        for (Producto p : productos) {
+            total += p.getCantidad();
+        }
+        return total;
+    }
+
+    public Producto obtenerProductoConMayorStock() {
+        Producto productoMayor = null;
+        int mayor = -1;
+        for (Producto p : productos) {
+            if (mayor < p.getCantidad()){
+                mayor = p.getCantidad();
+                productoMayor = p;
+            }
+        }
+        return productoMayor;
+    }
+
+    public ArrayList<Producto> filtrarProductosPorPrecio(double min, double max){
+        ArrayList<Producto> rango = new ArrayList<>();
+        for (Producto p : productos) {
+            if (p.getPrecio() >= min && p.getPrecio() <= max) {
+                rango.add(p);
+            }
+        }
+        return rango;
+    }
+
+    public void mostrarCategotiasDisponibles(){
+        for (CategoriaProducto c : CategoriaProducto.values()) {
+            System.out.println(c.name() + ": " + c.getDescripcion());
+            /*System.out.println(c);*/
+        }
+    }
 }

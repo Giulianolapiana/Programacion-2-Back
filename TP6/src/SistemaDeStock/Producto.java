@@ -24,12 +24,20 @@ public class Producto {
         return id;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public CategoriaProducto getCategoria() {
+        return categoria;
     }
 
     @Override
